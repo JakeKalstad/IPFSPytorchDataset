@@ -33,7 +33,6 @@ class IPFSDataset(Dataset):
             if member.isfile:
                 extractedFile = tar.extractfile(member)
                 if extractedFile is not None:
-                    member.path
                     for classkey in self.class_to_idx:
                         if classkey in member.path:
                             img = Image.open(extractedFile)
