@@ -11,7 +11,7 @@ class IPFSDataset(Dataset):
     def __init__(self, cid, transform=None, target_transform=None, url="http://127.0.0.1:5001/api/v0"):
         """
         Args: 
-            cid (string): IPFS Directory CID with all the files.
+            cid (string): IPFS Directory CID with all the sub directories (categories) & files.
             url (string): IPFS base URL
             transform (callable, optional): Optional transform to be applied
                 on a sample.
@@ -28,7 +28,6 @@ class IPFSDataset(Dataset):
         self.classes.sort()
         self.class_to_idx = {self.classes[i]
             : i for i in range(len(self.classes))}
-        print(self.class_to_idx)
         for member in tar.getmembers():
             if member.isfile:
                 extractedFile = tar.extractfile(member)
